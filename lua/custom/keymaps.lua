@@ -5,6 +5,8 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search' })
 vim.keymap.set('n', '<leader>ww', ':set wrap!<CR>', { desc = 'Toggle word wrap' })
+vim.keymap.set('n', '<leader>or', ':OverseerRun<CR>', { desc = 'OverseerRun' })
+vim.keymap.set('n', '<leader>ot', ':OverseerToggle<CR>', { desc = 'OverseerToggle' })
 vim.keymap.set('n', '<leader>d', '*#', { desc = 'select current word without jumping forward' })
 vim.keymap.set('n', '<leader>pw', function()
   local builtins = require 'telescope.builtin'

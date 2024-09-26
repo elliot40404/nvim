@@ -96,7 +96,7 @@ local plugins = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
       'nvim-telescope/telescope.nvim', -- optional
-      'ibhagwan/fzf-lua', -- optional
+      -- 'ibhagwan/fzf-lua', -- optional
     },
     config = true,
   },
@@ -245,6 +245,10 @@ local plugins = {
       vim.opt.termguicolors = true
       require('bufferline').setup()
     end,
+  },
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
   },
 }
 
