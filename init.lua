@@ -27,7 +27,11 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   {
     'numToStr/Comment.nvim',
-    opts = {},
+    config = function()
+      require('Comment').setup()
+      local ft = require 'Comment.ft'
+      ft.set('env', '#%s')
+    end,
   },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
