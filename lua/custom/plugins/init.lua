@@ -124,8 +124,9 @@ local plugins = {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'everblush',
+          -- theme = 'everblush',
           -- theme = 'tokyonight',
+          theme = 'rose-pine',
         },
       }
     end,
