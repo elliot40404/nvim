@@ -444,7 +444,8 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'gofumpt', -- Used to format Go code
         'goimports-reviser', -- Used to format Go code
-        'tsserver', -- Used for TypeScript/JavaScript
+        -- 'tsserver', -- Used for TypeScript/JavaScript
+        'ts_ls',
         'pyright',
         'ruff',
         'mypy',
