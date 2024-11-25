@@ -72,3 +72,6 @@ vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 -- snippets --
 vim.g.lua_snippets_path = vim.fn.stdpath 'config' .. '\\lua\\custom\\snippets'
+-- spell checker
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true

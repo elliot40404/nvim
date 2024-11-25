@@ -91,7 +91,7 @@ vim.keymap.set('v', 'K', ":move '<-2<CR>gv=gv", { desc = 'Move line up' })
 -- Plugin keymaps
 
 vim.keymap.set('n', '-', function()
-  vim.cmd 'Oil'
+  vim.cmd 'Oil --float'
 end, { desc = 'Open parent directory' })
 
 -- vim.keymap.set('i', '<M-l>', 'copilot#Accept("\\<CR>")', {
