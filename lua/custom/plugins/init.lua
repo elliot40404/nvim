@@ -134,6 +134,7 @@ local plugins = {
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    ft = { 'typescript', 'javascript' },
     opts = {
       settings = {
         tsserver_file_preferences = {
@@ -156,6 +157,7 @@ local plugins = {
   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown' },
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
@@ -171,7 +173,7 @@ local plugins = {
   -- },
   {
     'supermaven-inc/supermaven-nvim',
-    -- event = { 'BufEnter' },
+    event = { 'BufEnter' },
     config = function()
       require('supermaven-nvim').setup {
         keymaps = {
@@ -250,6 +252,32 @@ local plugins = {
   {
     'stevearc/overseer.nvim',
     opts = {},
+  },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {
+      bigfile = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+      dashboard = { enabled = true },
+    },
+  },
+  {
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = 'v0.*',
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono',
+      },
+      signature = { enabled = true },
+    },
   },
 }
 
