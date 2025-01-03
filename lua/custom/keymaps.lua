@@ -57,7 +57,7 @@ vim.keymap.set('n', '<leader>ls', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'Show signature help' })
 -- comments
-if jit.os == 'Windows' then
+if jit.os == 'Windows' or jit.os == 'OSX' then
   vim.keymap.set('n', '<C-_>', function()
     vim.api.nvim_input 'gcc'
   end, { desc = 'Comment line' })
