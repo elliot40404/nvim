@@ -29,7 +29,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Normal mode keymaps
-
+vim.keymap.set('n', 'p', 'p`[', { desc = 'paste and go to paste end' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search' })
@@ -128,3 +128,7 @@ end, { desc = 'Switch to previous buffer' })
 vim.keymap.set('n', '<leader>x', function()
   vim.cmd 'bd!'
 end, { desc = 'Close current buffer' })
+
+vim.keymap.set('n', '<leader>aq', function()
+  vim.cmd 'BufferLineCloseOthers'
+end, { desc = 'Close all Buffers but current one' })

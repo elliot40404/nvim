@@ -168,9 +168,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Find existing [b]uffers' })
       vim.keymap.set('n', '<leader><leader>', function()
         if vim.fn.isdirectory '.git' == 1 then
-          vim.cmd 'Telescope git_files'
+          vim.cmd 'Telescope git_files hidden=true'
         else
-          vim.cmd 'Telescope find_files'
+          vim.cmd 'Telescope find_files hidden=true'
         end
       end, { desc = '[S]earch [F]iles' })
       -- Slightly advanced example of overriding default behavior and theme
@@ -213,7 +213,7 @@ require('lazy').setup({
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
-      'saghen/blink.cmp',
+      -- 'saghen/blink.cmp',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -289,8 +289,8 @@ require('lazy').setup({
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -355,6 +355,9 @@ require('lazy').setup({
               },
             },
           },
+        },
+        emmet_language_server = {
+          filetypes = { 'html', 'css', 'vue' },
         },
       }
 
@@ -562,14 +565,21 @@ require('lazy').setup({
   },
 
   {
-    -- 'folke/tokyonight.nvim',
     -- 'Everblush/nvim',
     -- name = 'everblush',
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    -- 'rose-pine/neovim',
+    -- name = 'rose-pine',
+    'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = 'transparent',
+        floats = 'transparent',
+      },
+    },
     init = function()
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.hi 'Comment gui=none'
     end,
   },

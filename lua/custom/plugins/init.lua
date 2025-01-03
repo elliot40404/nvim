@@ -125,25 +125,25 @@ local plugins = {
       require('lualine').setup {
         options = {
           -- theme = 'everblush',
-          -- theme = 'tokyonight',
-          theme = 'rose-pine',
+          theme = 'tokyonight',
+          -- theme = 'rose-pine',
         },
       }
     end,
   },
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    ft = { 'typescript', 'javascript' },
-    opts = {
-      settings = {
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayFunctionLikeReturnTypeHints = 'all',
-        },
-      },
-    },
-  },
+  -- {
+  --   'pmizio/typescript-tools.nvim',
+  --   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+  --   ft = { 'typescript', 'javascript' },
+  --   opts = {
+  --     settings = {
+  --       tsserver_file_preferences = {
+  --         includeInlayParameterNameHints = 'all',
+  --         includeInlayFunctionLikeReturnTypeHints = 'all',
+  --       },
+  --     },
+  --   },
+  -- },
   {
     'windwp/nvim-ts-autotag',
     ft = { 'html' },
@@ -266,19 +266,19 @@ local plugins = {
       dashboard = { enabled = true },
     },
   },
-  {
-    'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
-    version = 'v0.*',
-    opts = {
-      keymap = { preset = 'default' },
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = 'mono',
-      },
-      signature = { enabled = true },
-    },
-  },
+  -- {
+  --   'saghen/blink.cmp',
+  --   dependencies = 'rafamadriz/friendly-snippets',
+  --   version = 'v0.*',
+  --   opts = {
+  --     keymap = { preset = 'default' },
+  --     appearance = {
+  --       use_nvim_cmp_as_default = true,
+  --       nerd_font_variant = 'mono',
+  --     },
+  --     signature = { enabled = true },
+  --   },
+  -- },
 }
 
 return plugins
