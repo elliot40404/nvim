@@ -361,14 +361,13 @@ require('lazy').setup({
         },
       }
 
-      local ignore_servers = { 'tsserver' }
+      local ignore_servers = {}
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'gofumpt', -- Used to format Go code
         'goimports-reviser', -- Used to format Go code
-        -- 'tsserver', -- Used for TypeScript/JavaScript
         'ts_ls',
         'pyright',
         'ruff',
