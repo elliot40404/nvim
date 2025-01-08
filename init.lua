@@ -413,9 +413,18 @@ require('lazy').setup({
         local disable_filetypes = { c = true, cpp = true }
         -- JS/TS
         if vim.bo[bufnr].filetype == 'javascript' or vim.bo[bufnr].filetype == 'typescript' then
-          -- vim.cmd 'TSToolsFixAll'
-          -- vim.cmd 'TSToolsOrganizeImports'
-          vim.cmd 'EslintFixAll'
+          -- organize imports
+          vim.lsp.buf.execute_command { command = '_typescript.organizeImports', arguments = { vim.fn.expand '%:p' } }
+          -- TODO: add missing imports
+          -- TODO: auto fix all fixable
+          local cmds = {
+            'EslintFixAll',
+          }
+          for _, cmd in ipairs(cmds) do
+            if vim.fn.exists(':' .. cmd) == 1 then
+              vim.cmd(cmd)
+            end
+          end
         end
 
         return {
