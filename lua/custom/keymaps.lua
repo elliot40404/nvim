@@ -44,6 +44,13 @@ vim.keymap.set('n', '<leader>pw', function()
   local word = vim.fn.expand '<cword>'
   builtins.grep_string { search = word }
 end, { desc = 'Search word under cursor' })
+
+vim.keymap.set('n', '<leader>sl', function()
+  local builtins = require 'telescope.builtin'
+  local line = vim.fn.getline '.'
+  builtins.grep_string { search = line }
+end, { desc = 'Search [L]ine under cursor' })
+
 vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Previous quickfix item' })
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>', { desc = 'Close quickfix list' })

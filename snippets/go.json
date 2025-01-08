@@ -1,0 +1,24 @@
+{
+    "if err != nil": {
+        "prefix": "ie",
+        "body": [
+            "if err != nil {",
+            "\t$1",
+            "}$0"
+        ],
+        "description": "Insert if err != nil"
+    },
+    "Main Package": {
+        "prefix": "pm",
+        "body": [
+            "package main",
+            "",
+            "import \"fmt\"",
+            "",
+            "func main() {",
+            "\tfmt.Printf(\"Hello, World!\\n\")",
+            "}"
+        ],
+        "description": "Basic main package structure"
+    }
+}
