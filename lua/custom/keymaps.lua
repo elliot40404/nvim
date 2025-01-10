@@ -55,6 +55,15 @@ vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Previous quickfix item' })
 vim.keymap.set('n', '<leader>cc', ':cclose<CR>', { desc = 'Close quickfix list' })
 vim.keymap.set('n', '<leader>co', ':copen<CR>', { desc = 'Open quickfix list' })
+
+vim.keymap.set('n', '<M-n>', function()
+  require('trouble').next { skip_groups = true, jump = true }
+end, { desc = 'trouble next' })
+vim.keymap.set('n', '<M-p>', function()
+  local trouble = require 'trouble'
+  trouble.prev { skip_groups = true, jump = true }
+end, { desc = 'trouble prev' })
+
 vim.keymap.set('n', '<M-h>', function()
   vim.cmd 'ToggleTerm direction=float name=terminal'
 end, { desc = 'Toggle terminal' })
@@ -136,6 +145,6 @@ vim.keymap.set('n', '<leader>x', function()
   vim.cmd 'bd!'
 end, { desc = 'Close current buffer' })
 
-vim.keymap.set('n', '<leader>aq', function()
+vim.keymap.set('n', '<leader>cb', function()
   vim.cmd 'BufferLineCloseOthers'
 end, { desc = 'Close all Buffers but current one' })
