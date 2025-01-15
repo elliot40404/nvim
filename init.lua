@@ -31,6 +31,7 @@ require('lazy').setup({
       require('Comment').setup()
       local ft = require 'Comment.ft'
       ft.set('env', '#%s')
+      ft.set('config', '#%s')
     end,
   },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
