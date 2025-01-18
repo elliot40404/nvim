@@ -81,3 +81,10 @@ vim.g.lua_snippets_path = vim.fn.stdpath 'config' .. '\\lua\\custom\\snippets'
 -- spell checker
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+
+-- NEOVIDE CONFIG
+
+if vim.g.neovide then
+  vim.g.neovide_transparency = 0.93
+  vim.g.neovide_normal_opacity = 0.93
+end
