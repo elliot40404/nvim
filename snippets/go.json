@@ -27,7 +27,7 @@
             "\tfmt.Sprintf(\"$1\", $2)$0"
         ],
         "description": "fmt.Sprintf"
-    }
+    },
     "printf": {
         "prefix": "pf",
         "body": [

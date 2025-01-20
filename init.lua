@@ -480,7 +480,10 @@ require('lazy').setup({
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
-      local mysnips = vim.fn.stdpath 'config' .. '\\snippets'
+      local mysnips = vim.fn.stdpath 'config' .. '/snippets'
+      if jit.os == 'Windows' then
+        mysnips = mysnips:gsub('\\', '/')
+      end
       -- require('luasnip.loaders.from_lua').lazy_load { paths = { mysnips } }
       require('luasnip.loaders.from_vscode').lazy_load { paths = { mysnips } }
 
