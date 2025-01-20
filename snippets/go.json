@@ -20,5 +20,19 @@
             "}"
         ],
         "description": "Basic main package structure"
+    },
+    "sprintf": {
+        "prefix": "sf",
+        "body": [
+            "\tfmt.Sprintf(\"$1\", $2)$0"
+        ],
+        "description": "fmt.Sprintf"
+    }
+    "printf": {
+        "prefix": "pf",
+        "body": [
+            "\tfmt.Printf(\"$1\", $2)$0"
+        ],
+        "description": "fmt.Printf"
     }
 }
