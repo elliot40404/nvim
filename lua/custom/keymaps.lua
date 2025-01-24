@@ -113,6 +113,17 @@ vim.keymap.set('n', '-', function()
   vim.cmd 'Oil --float'
 end, { desc = 'Open parent directory' })
 
+vim.keymap.set('n', '<leader>\\', function()
+  local oil = require 'oil'
+  if vim.g.oil_open then
+    oil.close()
+    vim.g.oil_open = false
+    return
+  end
+  oil.toggle_float()
+  vim.g.oil_open = true
+end, { desc = 'Toggle Oil' })
+
 -- vim.keymap.set('i', '<M-l>', 'copilot#Accept("\\<CR>")', {
 --   expr = true,
 --   replace_keycodes = false,
