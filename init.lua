@@ -361,6 +361,7 @@ require('lazy').setup({
           filetypes = { 'html', 'css', 'vue' },
         },
         terraformls = {},
+        revive = {},
       }
 
       local ignore_servers = {}
