@@ -42,6 +42,7 @@ vim.keymap.set('n', '<leader>or', ':OverseerRun<CR>', { desc = 'OverseerRun' })
 vim.keymap.set('n', '<leader>ot', ':OverseerToggle<CR>', { desc = 'OverseerToggle' })
 vim.keymap.set('n', '<leader>d', '*#', { desc = 'select current word without jumping forward' })
 vim.keymap.set('n', '<leader>n', ':Neogit<CR>', { desc = 'Open Neogit' })
+vim.keymap.set('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'Gitsigns blame line' })
 vim.keymap.set('n', '<leader>pw', function()
   local builtins = require 'telescope.builtin'
   local word = vim.fn.expand '<cword>'

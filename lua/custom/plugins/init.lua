@@ -4,6 +4,31 @@ local plugins = {
   --   lazy = false,
   -- },
   {
+    'mfussenegger/nvim-lint',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      local lint = require 'lint'
+      lint.linters_by_ft = {
+        -- markdown = { 'markdownlint' },
+        -- sql = { 'sqlfluff' },
+        python = { 'ruff', 'mypy' },
+        go = { 'revive' },
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
+      }
+      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        group = lint_augroup,
+        callback = function()
+          require('lint').try_lint()
+        end,
+      })
+      vim.keymap.set('n', '<leader>l', function()
+        require('lint').try_lint()
+      end, { desc = '[L]int current buffer' })
+    end,
+  },
+  {
     'folke/trouble.nvim',
     lazy = 'VeryLazy',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -131,19 +156,6 @@ local plugins = {
       }
     end,
   },
-  -- {
-  --   'pmizio/typescript-tools.nvim',
-  --   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-  --   ft = { 'typescript', 'javascript' },
-  --   opts = {
-  --     settings = {
-  --       tsserver_file_preferences = {
-  --         includeInlayParameterNameHints = 'all',
-  --         includeInlayFunctionLikeReturnTypeHints = 'all',
-  --       },
-  --     },
-  --   },
-  -- },
   {
     'windwp/nvim-ts-autotag',
     ft = { 'html' },
@@ -163,14 +175,6 @@ local plugins = {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
-  -- {
-  --   'ray-x/lsp_signature.nvim',
-  --   event = 'VeryLazy',
-  --   opts = {},
-  --   config = function(_, opts)
-  --     require('lsp_signature').setup(opts)
-  --   end,
-  -- },
   {
     'supermaven-inc/supermaven-nvim',
     event = { 'BufEnter' },
@@ -266,19 +270,6 @@ local plugins = {
       dashboard = { enabled = true },
     },
   },
-  -- {
-  --   'saghen/blink.cmp',
-  --   dependencies = 'rafamadriz/friendly-snippets',
-  --   version = 'v0.*',
-  --   opts = {
-  --     keymap = { preset = 'default' },
-  --     appearance = {
-  --       use_nvim_cmp_as_default = true,
-  --       nerd_font_variant = 'mono',
-  --     },
-  --     signature = { enabled = true },
-  --   },
-  -- },
   { 'wakatime/vim-wakatime', lazy = false },
   {
     'folke/flash.nvim',
