@@ -163,6 +163,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<M-/>', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -414,20 +415,20 @@ require('lazy').setup({
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         -- JS/TS
-        if vim.bo[bufnr].filetype == 'javascript' or vim.bo[bufnr].filetype == 'typescript' then
-          -- organize imports
-          vim.lsp.buf.execute_command { command = '_typescript.organizeImports', arguments = { vim.fn.expand '%:p' } }
-          -- TODO: add missing imports
-          -- TODO: auto fix all fixable
-          local cmds = {
-            'EslintFixAll',
-          }
-          for _, cmd in ipairs(cmds) do
-            if vim.fn.exists(':' .. cmd) == 1 then
-              vim.cmd(cmd)
-            end
-          end
-        end
+        -- if vim.bo[bufnr].filetype == 'javascript' or vim.bo[bufnr].filetype == 'typescript' then
+        --   -- organize imports
+        --   -- vim.lsp.buf.execute_command { command = '_typescript.organizeImports', arguments = { vim.fn.expand '%:p' } }
+        --   -- TODO: add missing imports
+        --   -- TODO: auto fix all fixable
+        --   local cmds = {
+        --     'EslintFixAll',
+        --   }
+        --   for _, cmd in ipairs(cmds) do
+        --     if vim.fn.exists(':' .. cmd) == 1 then
+        --       vim.cmd(cmd)
+        --     end
+        --   end
+        -- end
 
         return {
           timeout_ms = 5000,
