@@ -163,3 +163,6 @@ end, { desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>cb', function()
   vim.cmd 'BufferLineCloseOthers'
 end, { desc = 'Close all Buffers but current one' })
+vim.keymap.set('n', '<leader>.', function()
+  require('snacks').scratch()
+end, { desc = 'Toggle Scratch Buffer' })
