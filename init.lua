@@ -230,6 +230,7 @@ require('lazy').setup({
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('go', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
