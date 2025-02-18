@@ -175,22 +175,22 @@ local plugins = {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
-  {
-    'supermaven-inc/supermaven-nvim',
-    event = { 'BufEnter' },
-    config = function()
-      require('supermaven-nvim').setup {
-        keymaps = {
-          accept_suggestion = '<M-l>',
-          accept_word = '<M-L>',
-        },
-        ignore_filetypes = { 'env' },
-        condition = function()
-          return false
-        end,
-      }
-    end,
-  },
+  -- {
+  --   'supermaven-inc/supermaven-nvim',
+  --   event = { 'BufEnter' },
+  --   config = function()
+  --     require('supermaven-nvim').setup {
+  --       keymaps = {
+  --         accept_suggestion = '<M-l>',
+  --         accept_word = '<M-L>',
+  --       },
+  --       ignore_filetypes = { 'env' },
+  --       condition = function()
+  --         return false
+  --       end,
+  --     }
+  --   end,
+  -- },
   {
     'kristijanhusak/vim-dadbod-ui',
     dependencies = {
@@ -261,13 +261,28 @@ local plugins = {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
       dashboard = { enabled = true },
+      picker = { enabled = true },
+      indent = {
+        priority = 1,
+        enabled = true,
+        only_scope = true,
+        only_current = true,
+      },
+    },
+    keys = {
+      {
+        '\\',
+        function()
+          Snacks.explorer()
+        end,
+        desc = 'File Explorer',
+      },
     },
   },
   { 'wakatime/vim-wakatime', lazy = false },
