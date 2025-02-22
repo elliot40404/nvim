@@ -76,6 +76,9 @@ vim.filetype.add {
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
+vim.g.copilot_filetypes = {
+  env = false,
+}
 -- snippets --
 vim.g.lua_snippets_path = vim.fn.stdpath 'config' .. '\\lua\\custom\\snippets'
 -- spell checker

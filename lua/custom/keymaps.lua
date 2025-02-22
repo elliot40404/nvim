@@ -125,17 +125,17 @@ vim.keymap.set('n', '<leader>\\', function()
   vim.g.oil_open = true
 end, { desc = 'Toggle Oil' })
 
--- vim.keymap.set('i', '<M-l>', 'copilot#Accept("\\<CR>")', {
---   expr = true,
---   replace_keycodes = false,
---   desc = 'Copilot Accept',
--- })
---
--- vim.keymap.set('i', '<M-L>', 'copilot#AcceptWord("\\<CR>")', {
---   expr = true,
---   replace_keycodes = false,
---   desc = 'Copilot Accept Word',
--- })
+vim.keymap.set('i', '<M-l>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+  desc = 'Copilot Accept',
+})
+
+vim.keymap.set('i', '<M-L>', 'copilot#AcceptWord("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+  desc = 'Copilot Accept Word',
+})
 
 vim.keymap.set('n', '<leader>cs', function()
   vim.cmd 'Telescope session-lens'
@@ -166,3 +166,11 @@ end, { desc = 'Close all Buffers but current one' })
 vim.keymap.set('n', '<leader>.', function()
   require('snacks').scratch()
 end, { desc = 'Toggle Scratch Buffer' })
+vim.keymap.set('n', '<leader>sb', function()
+  local sp = require 'snacks.picker'
+  sp.git_branches()
+end, { desc = '[s]witch git [b]ranch' })
+vim.keymap.set('n', '<leader>gl', function()
+  local sp = require 'snacks.picker'
+  sp.git_log_line()
+end, { desc = '[s]witch git [b]ranch' })
