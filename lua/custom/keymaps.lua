@@ -173,4 +173,9 @@ end, { desc = '[s]witch git [b]ranch' })
 vim.keymap.set('n', '<leader>gl', function()
   local sp = require 'snacks.picker'
   sp.git_log_line()
-end, { desc = '[s]witch git [b]ranch' })
+end, { desc = '[s]witch git [l]og line' })
+
+-- copy name of current git branch
+vim.keymap.set('n', '<leader>cB', function()
+  vim.fn.setreg('+', vim.fn.system 'git rev-parse --abbrev-ref HEAD')
+end, { desc = 'Copy git branch name' })
