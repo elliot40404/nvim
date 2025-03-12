@@ -179,3 +179,62 @@ end, { desc = '[s]witch git [l]og line' })
 vim.keymap.set('n', '<leader>cB', function()
   vim.fn.setreg('+', vim.fn.system 'git rev-parse --abbrev-ref HEAD')
 end, { desc = 'Copy git branch name' })
+
+function SendToQex()
+  local ls = vim.fn.line "'<"
+  local le = vim.fn.line "'>"
+  local lines = vim.fn.getline(ls, le)
+  local content = table.concat(lines, '\n')
+  local qex_output = vim.fn.tempname()
+  local is_windows = vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1
+  local cmd
+  if is_windows then
+    cmd = string.format('powershell -Command "qex | Tee-Object -FilePath %s"', qex_output)
+  else
+    cmd = string.format('qex | tee %s', qex_output)
+  end
+  vim.cmd('split | terminal ' .. cmd)
+  local term_buf = vim.api.nvim_get_current_buf()
+  vim.defer_fn(function()
+    local chan_id = vim.b.terminal_job_id
+    if chan_id then
+      vim.api.nvim_create_autocmd('TermClose', {
+        buffer = term_buf,
+        callback = function()
+          vim.api.nvim_buf_delete(term_buf, { force = true })
+          vim.defer_fn(function()
+            local file = io.open(qex_output, 'r')
+            if file then
+              local content = file:read '*all'
+              file:close()
+              vim.cmd 'enew'
+              local buf = vim.api.nvim_get_current_buf()
+              vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+              vim.api.nvim_buf_set_option(buf, 'bufhidden', 'hide')
+              vim.api.nvim_buf_set_option(buf, 'swapfile', false)
+              vim.api.nvim_buf_set_option(buf, 'filetype', 'json')
+              local lines = {}
+              local start_json = false
+              for line in content:gmatch '[^\r\n]+' do
+                -- Start collecting lines once we see the opening bracket
+                if line:match '%[' then
+                  start_json = true
+                end
+                if start_json then
+                  table.insert(lines, line)
+                end
+              end
+              vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+              vim.fn.delete(qex_output)
+            end
+          end, 100)
+        end,
+        once = true,
+      })
+      vim.fn.chansend(chan_id, content .. '\n')
+      vim.cmd 'startinsert'
+    end
+  end, 100)
+end
+
+vim.keymap.set('v', '<leader>e', ':lua SendToQex()<CR>', { noremap = true, silent = true })
