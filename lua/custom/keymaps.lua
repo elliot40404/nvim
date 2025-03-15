@@ -238,3 +238,19 @@ function SendToQex()
 end
 
 vim.keymap.set('v', '<leader>e', ':lua SendToQex()<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>lg', function()
+  local sp = require 'snacks.lazygit'
+  sp.open()
+end, { desc = '[l]azy [g]it' })
+
+-- toggle diffview
+vim.keymap.set('n', '<leader>od', function()
+  if vim.g.IS_OPEN == 1 then
+    vim.cmd 'DiffviewClose'
+    vim.g.IS_OPEN = 0
+  else
+    vim.cmd 'DiffviewOpen'
+    vim.g.IS_OPEN = 1
+  end
+end, { desc = '[O]pen [D]iffview' })
