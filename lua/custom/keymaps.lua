@@ -254,3 +254,5 @@ vim.keymap.set('n', '<leader>od', function()
     vim.g.IS_OPEN = 1
   end
 end, { desc = '[O]pen [D]iffview' })
+
+vim.keymap.set('n', '<leader>y', 'y$', { desc = '[Y]ank till $' })
