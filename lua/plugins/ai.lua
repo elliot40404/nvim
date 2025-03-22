@@ -1,0 +1,22 @@
+return {
+  -- {
+  --   'github/copilot.vim',
+  --   lazy = false,
+  -- },
+  -- {
+  --   'supermaven-inc/supermaven-nvim',
+  --   event = { 'BufEnter' },
+  --   config = function()
+  --     require('supermaven-nvim').setup {
+  --       keymaps = {
+  --         accept_suggestion = '<M-l>',
+  --         accept_word = '<M-L>',
+  --       },
+  --       ignore_filetypes = { 'env' },
+  --       condition = function()
+  --         return false
+  --       end,
+  --     }
+  --   end,
+  -- },
+}
