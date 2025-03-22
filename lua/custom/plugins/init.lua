@@ -125,7 +125,6 @@ local plugins = {
     },
     config = true,
   },
-  { 'akinsho/toggleterm.nvim', version = '*', config = true },
   {
     'rmagatti/auto-session',
     dependencies = {
@@ -267,12 +266,27 @@ local plugins = {
       notifier = { enabled = true },
       quickfile = { enabled = true },
       dashboard = { enabled = true },
-      picker = { enabled = true },
+      words = { enabled = true },
+      input = { enabled = true },
+      picker = {
+        enabled = true,
+      },
+      -- explorer = { enabled = true },
+      statuscolumn = { enabled = true },
       indent = {
         priority = 1,
         enabled = true,
         only_scope = true,
         only_current = true,
+        animate = {
+          enabled = false,
+        },
+      },
+      terminal = {
+        win = {
+          position = 'float',
+          border = 'rounded',
+        },
       },
     },
     keys = {
@@ -282,6 +296,161 @@ local plugins = {
           Snacks.explorer()
         end,
         desc = 'File Explorer',
+      },
+      {
+        '<leader>sh',
+        function()
+          Snacks.picker.help()
+        end,
+        desc = '[S]earch [H]elp',
+      },
+      {
+        '<leader>sk',
+        function()
+          Snacks.picker.keymaps()
+        end,
+        desc = '[S]earch [K]eymaps',
+      },
+      {
+        '<leader>sf',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = '[S]earch [F]iles',
+      },
+      {
+        '<leader>ss',
+        function()
+          Snacks.picker()
+        end,
+        desc = '[S]earch [S]elect',
+      },
+      {
+        '<leader>sw',
+        function()
+          Snacks.picker.grep_word()
+        end,
+        desc = '[S]earch current [W]ord',
+      },
+      {
+        '<M-/>',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = '[S]earch by [G]rep',
+      },
+      {
+        '<leader>sd',
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = '[S]earch [D]iagnostics',
+      },
+      {
+        '<leader>sr',
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = '[S]earch [R]esume',
+      },
+      {
+        '<leader>b',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Find existing [b]uffers',
+      },
+      {
+        '<leader><leader>',
+        function()
+          if vim.fn.isdirectory '.git' == 1 then
+            Snacks.picker.git_files()
+          else
+            Snacks.picker.files()
+          end
+        end,
+        desc = '[S]earch [F]iles',
+      },
+      {
+        '<leader>lg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = '[l]azy [g]it',
+      },
+      {
+        '<leader>.',
+        function()
+          Snacks.scratch()
+        end,
+        desc = 'Toggle Scratch Buffer',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = '[s]witch git [b]ranch',
+      },
+      {
+        '<leader>gl',
+        function()
+          Snacks.picker.git_log_line()
+        end,
+        desc = '[g]it log [l]ine',
+      },
+      {
+        '<leader>gf',
+        function()
+          Snacks.picker.git_log_file()
+        end,
+        desc = 'git [l]og [f]ile',
+      },
+      {
+        '<leader>sl',
+        function()
+          local line = vim.fn.getline '.'
+          Snacks.picker.lines {
+            search = line,
+          }
+        end,
+        desc = 'Search [L]ine under cursor',
+      },
+      {
+        ']]',
+        function()
+          Snacks.words.jump(vim.v.count1)
+        end,
+        desc = 'Next Reference',
+        mode = { 'n', 't' },
+      },
+      {
+        '[[',
+        function()
+          Snacks.words.jump(-vim.v.count1)
+        end,
+        desc = 'Prev Reference',
+        mode = { 'n', 't' },
+      },
+      {
+        '<leader>/',
+        function()
+          Snacks.picker.lines {
+            layout = {
+              preview = 'main',
+              preset = 'vertical',
+            },
+          }
+        end,
+        desc = 'search in current buffer',
+      },
+      {
+        '<M-h>',
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = 'Toggle terminal',
+        mode = { 'n', 't' },
       },
     },
   },

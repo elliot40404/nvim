@@ -42,18 +42,6 @@ vim.keymap.set('n', '<leader>or', ':OverseerRun<CR>', { desc = 'OverseerRun' })
 vim.keymap.set('n', '<leader>ot', ':OverseerToggle<CR>', { desc = 'OverseerToggle' })
 vim.keymap.set('n', '<leader>d', '*#', { desc = 'select current word without jumping forward' })
 vim.keymap.set('n', '<leader>n', ':Neogit<CR>', { desc = 'Open Neogit' })
-vim.keymap.set('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'Gitsigns blame line' })
-vim.keymap.set('n', '<leader>pw', function()
-  local builtins = require 'telescope.builtin'
-  local word = vim.fn.expand '<cword>'
-  builtins.grep_string { search = word }
-end, { desc = 'Search word under cursor' })
-
-vim.keymap.set('n', '<leader>sl', function()
-  local builtins = require 'telescope.builtin'
-  local line = vim.fn.getline '.'
-  builtins.grep_string { search = line }
-end, { desc = 'Search [L]ine under cursor' })
 
 vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Previous quickfix item' })
@@ -68,9 +56,6 @@ vim.keymap.set('n', '<M-p>', function()
   trouble.prev { skip_groups = true, jump = true }
 end, { desc = 'trouble prev' })
 
-vim.keymap.set('n', '<M-h>', function()
-  vim.cmd 'ToggleTerm direction=float name=terminal'
-end, { desc = 'Toggle terminal' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'file copy whole' })
 vim.keymap.set('n', '<leader>ls', function()
@@ -98,17 +83,11 @@ else
     vim.api.nvim_input '<C-[>gcc==A'
   end, { desc = 'Comment line' })
 end
--- Terminal mode keymaps
-vim.keymap.set('t', '<M-h>', function()
-  vim.cmd 'ToggleTerm'
-end, { desc = 'Toggle terminal' })
 
 -- Visual mode keymaps
 
 vim.keymap.set('v', 'J', ":move '>+1<cr>gv=gv", { desc = 'move line down' })
 vim.keymap.set('v', 'K', ":move '<-2<CR>gv=gv", { desc = 'Move line up' })
-
--- Plugin keymaps
 
 vim.keymap.set('n', '-', function()
   vim.cmd 'Oil --float'
@@ -145,11 +124,9 @@ vim.keymap.set('i', '<M-i>', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'Show signature help' })
 
--- inset new line below in insert mode
 vim.keymap.set('i', '<M-j>', '<Esc>o', { desc = 'Insert new line below' })
 vim.keymap.set('i', '<M-k>', '<Esc>O', { desc = 'Insert new line above' })
 
--- navigate buffers
 vim.keymap.set('n', '<tab>', function()
   vim.cmd 'BufferLineCycleNext'
 end, { desc = 'Switch to next buffer' })
@@ -163,19 +140,7 @@ end, { desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>cb', function()
   vim.cmd 'BufferLineCloseOthers'
 end, { desc = 'Close all Buffers but current one' })
-vim.keymap.set('n', '<leader>.', function()
-  require('snacks').scratch()
-end, { desc = 'Toggle Scratch Buffer' })
-vim.keymap.set('n', '<leader>sb', function()
-  local sp = require 'snacks.picker'
-  sp.git_branches()
-end, { desc = '[s]witch git [b]ranch' })
-vim.keymap.set('n', '<leader>gl', function()
-  local sp = require 'snacks.picker'
-  sp.git_log_line()
-end, { desc = '[s]witch git [l]og line' })
 
--- copy name of current git branch
 vim.keymap.set('n', '<leader>cB', function()
   vim.fn.setreg('+', vim.fn.system 'git rev-parse --abbrev-ref HEAD')
 end, { desc = 'Copy git branch name' })
@@ -239,12 +204,6 @@ end
 
 vim.keymap.set('v', '<leader>e', ':lua SendToQex()<CR>', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>lg', function()
-  local sp = require 'snacks.lazygit'
-  sp.open()
-end, { desc = '[l]azy [g]it' })
-
--- toggle diffview
 vim.keymap.set('n', '<leader>od', function()
   if vim.g.IS_OPEN == 1 then
     vim.cmd 'DiffviewClose'
@@ -256,3 +215,4 @@ vim.keymap.set('n', '<leader>od', function()
 end, { desc = '[O]pen [D]iffview' })
 
 vim.keymap.set('n', '<leader>y', 'y$', { desc = '[Y]ank till $' })
+vim.keymap.set('n', '<leader>dd', '"_dd', { desc = '[D]elete to void' })
