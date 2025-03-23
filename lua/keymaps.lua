@@ -216,3 +216,5 @@ end, { desc = '[O]pen [D]iffview' })
 
 vim.keymap.set('n', '<leader>y', 'y$', { desc = '[Y]ank till $' })
 vim.keymap.set('n', '<leader>dd', '"_dd', { desc = '[D]elete to void' })
+vim.keymap.set('n', '[t', ':tabnext<CR>', { desc = 'Go to next [t]ab' })
+vim.keymap.set('n', ']t', ':tabprevious<CR>', { desc = 'Go to previous [t]ab' })
