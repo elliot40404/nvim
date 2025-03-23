@@ -1,7 +1,7 @@
 return {
   {
     'stevearc/conform.nvim',
-    lazy = 'BufEnter',
+    lazy = false,
     keys = {
       {
         '<leader>f',
