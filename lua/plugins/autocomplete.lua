@@ -3,7 +3,6 @@ return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
         build = (function()
@@ -92,4 +91,31 @@ return {
       })
     end,
   },
+  -- {
+  --   'saghen/blink.cmp',
+  --   dependencies = { 'rafamadriz/friendly-snippets' },
+  --   version = '*',
+  --   opts = {
+  --     keymap = { preset = 'default' },
+  --     appearance = {
+  --       nerd_font_variant = 'mono',
+  --     },
+  --     completion = {
+  --       list = {
+  --         selection = {
+  --           preselect = false,
+  --           auto_insert = false,
+  --         },
+  --       },
+  --       documentation = { auto_show = true, auto_show_delay_ms = 100 },
+  --       ghost_text = { enabled = true },
+  --     },
+  --     sources = {
+  --       default = { 'lsp', 'path', 'snippets', 'buffer' },
+  --     },
+  --     fuzzy = { implementation = 'prefer_rust_with_warning' },
+  --     signature = { enabled = true },
+  --   },
+  --   opts_extend = { 'sources.default' },
+  -- },
 }
