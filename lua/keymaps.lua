@@ -221,3 +221,15 @@ vim.keymap.set('n', ']t', ':tabprevious<CR>', { desc = 'Go to previous [t]ab' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right in insert' })
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left in insert' })
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down in insert' })
+vim.keymap.set('n', '<leader>cx', function()
+  vim.ui.input({ prompt = 'CMD: ' }, function(input)
+    if input then
+      local result = vim.fn.system(input)
+      vim.fn.setqflist({}, ' ', {
+        title = 'System Command Result',
+        lines = vim.split(result, '\n'),
+      })
+      vim.cmd 'copen'
+    end
+  end)
+end, { desc = 'Exec system command and fill quickfix list with result' })
