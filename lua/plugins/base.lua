@@ -432,6 +432,9 @@ local plugins = {
       vim.api.nvim_create_autocmd('TextYankPost', { callback = copy })
     end,
   },
+  {
+    'dyng/ctrlsf.vim',
+  },
 }
 
 return plugins

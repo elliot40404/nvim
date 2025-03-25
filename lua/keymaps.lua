@@ -233,3 +233,10 @@ vim.keymap.set('n', '<leader>cx', function()
     end
   end)
 end, { desc = 'Exec system command and fill quickfix list with result' })
+vim.keymap.set('n', '<leader>sg', function()
+  vim.ui.input({ prompt = 'Search: ' }, function(input)
+    if input then
+      vim.cmd('CtrlSF ' .. input)
+    end
+  end)
+end, { desc = 'Global search and replace' })
