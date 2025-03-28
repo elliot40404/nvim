@@ -127,19 +127,21 @@ local plugins = {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    lazy = 'BufEnter',
+    lazy = false,
     config = function()
       local harpoon = require 'harpoon'
-
-      harpoon:setup()
-
+      harpoon:setup {
+        settings = {
+          save_on_toggle = true,
+          sync_on_ui_close = true,
+        },
+      }
       vim.keymap.set('n', '<leader>a', function()
         harpoon:list():add()
       end, { desc = 'Add to harpoon' })
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'Harpoon quick menu' })
-
       vim.keymap.set('n', '<leader>1', function()
         harpoon:list():select(1)
       end, { desc = 'Select first harpoon' })
@@ -397,6 +399,34 @@ local plugins = {
         end,
         desc = 'Toggle terminal',
         mode = { 'n', 't' },
+      },
+      {
+        '<M-g>',
+        function()
+          if vim.fn.isdirectory '.git' == 1 then
+            Snacks.picker.files {
+              title = 'Modified Files (git)',
+              layout = 'select',
+              finder = function()
+                local output = vim.fn.systemlist 'git diff --name-only HEAD'
+                local items = {}
+                for _, file in ipairs(output) do
+                  if vim.fn.filereadable(file) == 1 then
+                    table.insert(items, {
+                      text = file,
+                      path = file,
+                      file = file,
+                    })
+                  end
+                end
+                return items
+              end,
+            }
+          else
+            Snacks.picker.files()
+          end
+        end,
+        desc = 'Pick [m]odified [g]it files',
       },
     },
   },
