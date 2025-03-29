@@ -6,7 +6,7 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         -- markdown = { 'markdownlint' },
-        -- sql = { 'sqlfluff' },
+        sql = { 'sqlfluff' },
         python = { 'ruff', 'mypy' },
         go = { 'revive' },
         javascript = { 'eslint_d' },

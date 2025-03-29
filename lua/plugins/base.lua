@@ -398,7 +398,6 @@ local plugins = {
           Snacks.terminal.toggle()
         end,
         desc = 'Toggle terminal',
-        mode = { 'n', 't' },
       },
       {
         '<M-g>',
@@ -408,22 +407,44 @@ local plugins = {
               title = 'Modified Files (git)',
               layout = 'select',
               finder = function()
-                local output = vim.fn.systemlist 'git diff --name-only HEAD'
+                local output = vim.fn.systemlist 'git status --porcelain=v1'
                 local items = {}
                 for _, file in ipairs(output) do
-                  if vim.fn.filereadable(file) == 1 then
+                  local status = file:sub(1, 2)
+                  local filepath = file:sub(4)
+                  filepath = vim.fn.fnamemodify(filepath, ':p:.')
+                  if vim.fn.filereadable(filepath) == 1 then
                     table.insert(items, {
-                      text = file,
-                      path = file,
-                      file = file,
+                      text = filepath,
+                      path = filepath,
+                      file = filepath,
+                      status = status,
                     })
                   end
                 end
                 return items
               end,
+              format = function(item)
+                local status_info = ({
+                  ['M '] = { icon = '~' },
+                  [' M'] = { icon = '~' },
+                  ['MM'] = { icon = '~' },
+                  ['A '] = { icon = '+' },
+                  ['??'] = { icon = '?' },
+                  ['D '] = { icon = 'X' },
+                  [' D'] = { icon = 'X' },
+                  ['R '] = { icon = 'R' },
+                  ['C '] = { icon = 'C' },
+                  ['U '] = { icon = 'U' },
+                })[item.status] or { icon = '?' }
+                return {
+                  { status_info.icon .. ' ', 'SnacksPickerGitStatus' },
+                  { item.text, 'SnacksPickerFile' },
+                }
+              end,
             }
           else
-            Snacks.picker.files()
+            Snacks.picker.files { layout = 'select' }
           end
         end,
         desc = 'Pick [m]odified [g]it files',
