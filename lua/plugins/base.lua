@@ -370,7 +370,6 @@ local plugins = {
           Snacks.words.jump(vim.v.count1)
         end,
         desc = 'Next Reference',
-        mode = { 'n', 't' },
       },
       {
         '[[',
@@ -378,7 +377,6 @@ local plugins = {
           Snacks.words.jump(-vim.v.count1)
         end,
         desc = 'Prev Reference',
-        mode = { 'n', 't' },
       },
       {
         '<leader>/',
@@ -398,6 +396,7 @@ local plugins = {
           Snacks.terminal.toggle()
         end,
         desc = 'Toggle terminal',
+        mode = { 'n', 't' },
       },
       {
         '<M-g>',
