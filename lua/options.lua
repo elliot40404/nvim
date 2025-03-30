@@ -79,11 +79,14 @@ vim.g.copilot_assume_mapped = true
 vim.g.copilot_filetypes = {
   env = false,
 }
--- snippets --
-vim.g.lua_snippets_path = vim.fn.stdpath 'config' .. '\\lua\\custom\\snippets'
 -- spell checker
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+-- virtual text
+vim.diagnostic.config {
+  virtual_text = true,
+  -- virtual_lines = { current_line = true },
+}
 
 -- NEOVIDE CONFIG
 
