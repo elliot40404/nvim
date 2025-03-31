@@ -6,7 +6,8 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
+vim.g.clipboard = 'osc52'
 -- Enable break indent
 vim.opt.breakindent = true
 -- Save undo history
