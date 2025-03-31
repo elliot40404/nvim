@@ -1,18 +1,18 @@
 local plugins = {
   'tpope/vim-sleuth',
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    -- Optional dependency
-    dependencies = { 'hrsh7th/nvim-cmp' },
-    config = function()
-      require('nvim-autopairs').setup {}
-      -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      local cmp = require 'cmp'
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-    end,
-  },
+  -- {
+  --   'windwp/nvim-autopairs',
+  --   event = 'InsertEnter',
+  --   -- Optional dependency
+  --   dependencies = { 'hrsh7th/nvim-cmp' },
+  --   config = function()
+  --     require('nvim-autopairs').setup {}
+  --     -- If you want to automatically add `(` after selecting a function or method
+  --     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+  --     local cmp = require 'cmp'
+  --     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+  --   end,
+  -- },
   {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -40,6 +40,7 @@ local plugins = {
       require('mini.surround').setup()
       require('mini.align').setup()
       require('mini.comment').setup()
+      require('mini.pairs').setup()
     end,
   },
   {
@@ -202,6 +203,7 @@ local plugins = {
   {
     'stevearc/overseer.nvim',
     lazy = 'VeryLazy',
+    cmd = { 'OveseerRun', 'OverseerToggle' },
     opts = {},
   },
   {
