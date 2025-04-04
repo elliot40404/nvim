@@ -1,18 +1,5 @@
 local plugins = {
   'tpope/vim-sleuth',
-  -- {
-  --   'windwp/nvim-autopairs',
-  --   event = 'InsertEnter',
-  --   -- Optional dependency
-  --   dependencies = { 'hrsh7th/nvim-cmp' },
-  --   config = function()
-  --     require('nvim-autopairs').setup {}
-  --     -- If you want to automatically add `(` after selecting a function or method
-  --     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-  --     local cmp = require 'cmp'
-  --     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-  --   end,
-  -- },
   {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -85,23 +72,6 @@ local plugins = {
     'mbbill/undotree',
     cmd = 'UndotreeToggle',
     lazy = 'VeryLazy',
-  },
-  {
-    'rmagatti/auto-session',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
-    config = function()
-      require('auto-session').setup {
-        auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-        session_lens = {
-          load_on_setup = true,
-          theme_conf = { border = true },
-          previewer = false,
-          buftypes_to_ignore = {},
-        },
-      }
-    end,
   },
   {
     'mg979/vim-visual-multi',
@@ -206,262 +176,6 @@ local plugins = {
     cmd = { 'OveseerRun', 'OverseerToggle' },
     opts = {},
   },
-  {
-    'folke/snacks.nvim',
-    priority = 1000,
-    lazy = false,
-    ---@type snacks.Config
-    opts = {
-      bigfile = { enabled = true },
-      notifier = { enabled = true },
-      quickfile = { enabled = true },
-      dashboard = { enabled = true },
-      words = { enabled = true },
-      input = { enabled = true },
-      picker = {
-        enabled = true,
-      },
-      -- explorer = { enabled = true },
-      statuscolumn = { enabled = true },
-      indent = {
-        priority = 1,
-        enabled = true,
-        only_scope = true,
-        only_current = true,
-        animate = {
-          enabled = false,
-        },
-      },
-      terminal = {
-        win = {
-          position = 'float',
-          border = 'rounded',
-        },
-      },
-    },
-    keys = {
-      {
-        '\\',
-        function()
-          Snacks.explorer()
-        end,
-        desc = 'File Explorer',
-      },
-      {
-        '<leader>sh',
-        function()
-          Snacks.picker.help()
-        end,
-        desc = '[S]earch [H]elp',
-      },
-      {
-        '<leader>sk',
-        function()
-          Snacks.picker.keymaps()
-        end,
-        desc = '[S]earch [K]eymaps',
-      },
-      {
-        '<leader>sf',
-        function()
-          Snacks.picker.files()
-        end,
-        desc = '[S]earch [F]iles',
-      },
-      {
-        '<leader>sF',
-        function()
-          Snacks.picker.files {
-            hidden = true,
-            ignored = true,
-          }
-        end,
-        desc = '[S]earch [F]iles',
-      },
-      {
-        '<leader>ss',
-        function()
-          Snacks.picker()
-        end,
-        desc = '[S]earch [S]elect',
-      },
-      {
-        '<leader>sw',
-        function()
-          Snacks.picker.grep_word()
-        end,
-        desc = '[S]earch current [W]ord',
-      },
-      {
-        '<M-/>',
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = '[S]earch by [G]rep',
-      },
-      {
-        '<leader>sd',
-        function()
-          Snacks.picker.diagnostics()
-        end,
-        desc = '[S]earch [D]iagnostics',
-      },
-      {
-        '<leader>sr',
-        function()
-          Snacks.picker.resume()
-        end,
-        desc = '[S]earch [R]esume',
-      },
-      {
-        '<leader>b',
-        function()
-          Snacks.picker.buffers()
-        end,
-        desc = 'Find existing [b]uffers',
-      },
-      {
-        '<leader><leader>',
-        function()
-          if vim.fn.isdirectory '.git' == 1 then
-            Snacks.picker.git_files()
-          else
-            Snacks.picker.files()
-          end
-        end,
-        desc = '[S]earch [F]iles',
-      },
-      {
-        '<leader>lg',
-        function()
-          Snacks.lazygit()
-        end,
-        desc = '[l]azy [g]it',
-      },
-      {
-        '<leader>.',
-        function()
-          Snacks.scratch()
-        end,
-        desc = 'Toggle Scratch Buffer',
-      },
-      {
-        '<leader>sb',
-        function()
-          Snacks.picker.git_branches()
-        end,
-        desc = '[s]witch git [b]ranch',
-      },
-      {
-        '<leader>gl',
-        function()
-          Snacks.picker.git_log_line()
-        end,
-        desc = '[g]it log [l]ine',
-      },
-      {
-        '<leader>gf',
-        function()
-          Snacks.picker.git_log_file()
-        end,
-        desc = 'git [l]og [f]ile',
-      },
-      {
-        '<leader>sl',
-        function()
-          local line = vim.fn.getline '.'
-          Snacks.picker.lines {
-            search = line,
-          }
-        end,
-        desc = 'Search [L]ine under cursor',
-      },
-      {
-        ']]',
-        function()
-          Snacks.words.jump(vim.v.count1)
-        end,
-        desc = 'Next Reference',
-      },
-      {
-        '[[',
-        function()
-          Snacks.words.jump(-vim.v.count1)
-        end,
-        desc = 'Prev Reference',
-      },
-      {
-        '<leader>/',
-        function()
-          Snacks.picker.lines {
-            layout = {
-              preview = 'main',
-              preset = 'vertical',
-            },
-          }
-        end,
-        desc = 'search in current buffer',
-      },
-      {
-        '<M-h>',
-        function()
-          Snacks.terminal.toggle()
-        end,
-        desc = 'Toggle terminal',
-        mode = { 'n', 't' },
-      },
-      {
-        '<M-g>',
-        function()
-          if vim.fn.isdirectory '.git' == 1 then
-            Snacks.picker.files {
-              title = 'Modified Files (git)',
-              layout = 'select',
-              finder = function()
-                local output = vim.fn.systemlist 'git status --porcelain=v1 -uall'
-                local items = {}
-                for _, file in ipairs(output) do
-                  local status = file:sub(1, 2)
-                  local filepath = file:sub(4)
-                  filepath = vim.fn.fnamemodify(filepath, ':p:.')
-                  if vim.fn.filereadable(filepath) == 1 then
-                    table.insert(items, {
-                      text = filepath,
-                      path = filepath,
-                      file = filepath,
-                      status = status,
-                    })
-                  end
-                end
-                return items
-              end,
-              format = function(item)
-                local status_info = ({
-                  ['M '] = { icon = '~' },
-                  [' M'] = { icon = '~' },
-                  ['MM'] = { icon = '~' },
-                  ['A '] = { icon = '+' },
-                  ['??'] = { icon = '?' },
-                  ['D '] = { icon = 'X' },
-                  [' D'] = { icon = 'X' },
-                  ['R '] = { icon = 'R' },
-                  ['C '] = { icon = 'C' },
-                  ['U '] = { icon = 'U' },
-                })[item.status] or { icon = '?' }
-                return {
-                  { status_info.icon .. ' ', 'SnacksPickerGitStatus' },
-                  { item.text, 'SnacksPickerFile' },
-                }
-              end,
-            }
-          else
-            Snacks.picker.files { layout = 'select' }
-          end
-        end,
-        desc = 'Pick [m]odified [g]it files',
-      },
-    },
-  },
   { 'wakatime/vim-wakatime', lazy = false },
   {
     'folke/flash.nvim',
@@ -484,6 +198,11 @@ local plugins = {
     cmd = 'CtrlSF',
     lazy = 'VeryLazy',
   },
+  -- {
+  --   'folke/persistence.nvim',
+  --   event = 'BufReadPre',
+  --   opts = {},
+  -- },
 }
 
 return plugins

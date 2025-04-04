@@ -93,8 +93,10 @@ return {
   -- },
   {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = { 'rafamadriz/friendly-snippets', 'mikavilpas/blink-ripgrep.nvim' },
     version = '*',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = { preset = 'default' },
       appearance = {
@@ -120,7 +122,14 @@ return {
         ghost_text = { enabled = true },
       },
       sources = {
-        default = { 'lsp', 'snippets', 'path', 'buffer' },
+        default = { 'lsp', 'snippets', 'path', 'buffer', 'ripgrep' },
+        providers = {
+          ripgrep = {
+            module = 'blink-ripgrep',
+            name = 'Ripgrep',
+            opts = {},
+          },
+        },
       },
       fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true, window = { border = 'rounded' } },
