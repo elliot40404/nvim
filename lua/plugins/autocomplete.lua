@@ -101,11 +101,19 @@ return {
         nerd_font_variant = 'mono',
       },
       completion = {
-        menu = { border = 'rounded' },
+        menu = {
+          border = 'rounded',
+          draw = {
+            columns = {
+              { 'label', 'label_description', gap = 2 },
+              { 'kind_icon', 'kind', 'source_name', gap = 2 },
+            },
+          },
+        },
         list = {
           selection = {
             preselect = false,
-            auto_insert = false,
+            auto_insert = true,
           },
         },
         documentation = { auto_show = true, auto_show_delay_ms = 50, window = { border = 'rounded' } },

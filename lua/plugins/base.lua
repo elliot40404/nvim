@@ -269,6 +269,16 @@ local plugins = {
         desc = '[S]earch [F]iles',
       },
       {
+        '<leader>sF',
+        function()
+          Snacks.picker.files {
+            hidden = true,
+            ignored = true,
+          }
+        end,
+        desc = '[S]earch [F]iles',
+      },
+      {
         '<leader>ss',
         function()
           Snacks.picker()
@@ -408,7 +418,7 @@ local plugins = {
               title = 'Modified Files (git)',
               layout = 'select',
               finder = function()
-                local output = vim.fn.systemlist 'git status --porcelain=v1'
+                local output = vim.fn.systemlist 'git status --porcelain=v1 -uall'
                 local items = {}
                 for _, file in ipairs(output) do
                   local status = file:sub(1, 2)
