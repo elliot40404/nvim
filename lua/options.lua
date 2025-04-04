@@ -55,15 +55,13 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 -- Code folding
--- vim.o.foldmethod = 'expr'
--- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldcolumn = '0'
-vim.opt.foldtext = ''
-vim.opt.foldlevel = 99
-vim.opt.foldnestmax = 5
-vim.o.foldenable = false
+vim.opt.foldenable = true -- Enable folding
+vim.opt.foldlevel = 99 -- Start with all folds open
+vim.opt.foldlevelstart = 99 -- Start with all folds open
+vim.opt.foldcolumn = '0' -- Show fold column
+vim.opt.foldmethod = 'expr' -- Use expression-based folding
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- Default to treesitter folding
+vim.opt.foldtext = 'v:lua.vim.lsp.foldtext()'
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 -- Indentation Options
