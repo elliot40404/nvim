@@ -122,13 +122,14 @@ return {
         ghost_text = { enabled = true },
       },
       sources = {
-        default = { 'lsp', 'snippets', 'path', 'buffer', 'ripgrep' },
+        default = { 'lsp', 'ecolog', 'snippets', 'path', 'buffer', 'ripgrep' },
         providers = {
           ripgrep = {
             module = 'blink-ripgrep',
             name = 'Ripgrep',
             opts = {},
           },
+          ecolog = { name = 'ecolog', module = 'ecolog.integrations.cmp.blink_cmp' },
         },
       },
       fuzzy = { implementation = 'prefer_rust_with_warning' },
