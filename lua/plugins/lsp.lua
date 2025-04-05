@@ -127,6 +127,12 @@ return {
         emmet_language_server = {
           filetypes = { 'html', 'css', 'vue' },
         },
+        html = {
+          filetypes = { 'html', 'vue' },
+        },
+        cssls = {
+          filetypes = { 'css', 'vue' },
+        },
         terraformls = {},
         revive = {},
       }

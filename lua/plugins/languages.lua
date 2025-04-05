@@ -35,4 +35,11 @@ return {
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
   },
+  {
+    'catgoose/nvim-colorizer.lua',
+    ft = { 'html', 'css' },
+    opts = {
+      mode = 'virtualtext',
+    },
+  },
 }
