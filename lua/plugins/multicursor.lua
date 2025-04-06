@@ -18,13 +18,12 @@ return {
       set({ 'n', 'x' }, '<M-J>', function()
         mc.lineSkipCursor(1)
       end)
-
       set({ 'n', 'x' }, '<C-n>', function()
         mc.matchAddCursor(1)
       end)
-      set({ 'n', 'x' }, '<C-N>', function()
-        mc.matchSkipCursor(1)
-      end)
+      -- set({ 'n', 'x' }, '<leader>J', function()
+      --   mc.matchSkipCursor(1)
+      -- end)
 
       set('n', '<c-leftmouse>', mc.handleMouse)
       set('n', '<c-leftdrag>', mc.handleMouseDrag)
