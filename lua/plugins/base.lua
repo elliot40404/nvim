@@ -74,10 +74,6 @@ local plugins = {
     lazy = 'VeryLazy',
   },
   {
-    'mg979/vim-visual-multi',
-    event = 'BufEnter',
-  },
-  {
     'kristijanhusak/vim-dadbod-ui',
     dependencies = {
       { 'tpope/vim-dadbod', lazy = true },
