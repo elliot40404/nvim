@@ -59,7 +59,6 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       -- NOTE: automcomplete source
       -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
       capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
       capabilities = vim.tbl_deep_extend('force', capabilities, {
         textDocument = {
@@ -86,6 +85,7 @@ return {
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               diagnostics = { disable = { 'missing-fields' } },
+              hints = { enable = true },
             },
           },
         },
