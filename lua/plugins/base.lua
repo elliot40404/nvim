@@ -199,6 +199,14 @@ local plugins = {
     event = 'BufReadPre',
     opts = {},
   },
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    },
+  },
 }
 
 return plugins
