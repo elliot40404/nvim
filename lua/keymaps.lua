@@ -148,6 +148,7 @@ vim.keymap.set('n', '<leader>od', function()
 end, { desc = 'T[o]ggle [D]iffview' })
 
 vim.keymap.set('n', '<leader>y', 'y$', { desc = '[Y]ank till $' })
+vim.keymap.set('n', '<leader>v', 'v$', { desc = '[V]isual till $' })
 vim.keymap.set('n', '<leader>dd', '"_dd', { desc = '[D]elete to void' })
 vim.keymap.set('n', ']t', '<cmd>tabnext<CR>', { desc = 'Go to next [t]ab' })
 vim.keymap.set('n', '[t', '<cmd>tabprevious<CR>', { desc = 'Go to previous [t]ab' })
