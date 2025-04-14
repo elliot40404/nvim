@@ -175,3 +175,9 @@ vim.keymap.set('n', '<leader>sg', function()
     end
   end)
 end, { desc = 'Global search and replace' })
+
+vim.keymap.set('n', '<leader>jj', function()
+  vim.cmd "1,$:norm Vsa'"
+  vim.cmd '%j!'
+  vim.cmd "%s/''/','/g"
+end, { desc = 'sql in join' })

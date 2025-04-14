@@ -207,6 +207,13 @@ local plugins = {
       'MunifTanjim/nui.nvim',
     },
   },
+  {
+    'ibhagwan/fzf-lua',
+    lazy = 'VeryLazy',
+    cmd = { 'FzfLua' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {},
+  },
 }
 
 return plugins
