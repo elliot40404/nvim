@@ -34,14 +34,18 @@ vim.keymap.set('n', '<leader>d', '*#', { desc = 'select current word without jum
 vim.keymap.set('n', '<leader>n', ':Neogit<CR>', { desc = 'Open Neogit' })
 
 vim.keymap.set('n', '<leader>cc', function()
-  if vim.g.QF_IS_OPEN == 1 then
-    vim.cmd 'copen'
-    vim.g.QF_IS_OPEN = 0
-  else
-    vim.cmd 'cclose'
-    vim.g.QF_IS_OPEN = 1
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      qf_exists = true
+    end
   end
-end, { desc = 'toggle quickfix list' })
+  if qf_exists == true then
+    vim.cmd 'cclose'
+  else
+    vim.cmd 'copen'
+  end
+end, { noremap = true, silent = true, desc = 'Toggle quickfix list window' })
 
 vim.keymap.set('n', '<M-n>', function()
   require('trouble').next { skip_groups = true, jump = true }
