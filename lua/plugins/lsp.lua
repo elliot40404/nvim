@@ -111,18 +111,26 @@ return {
             },
           },
         },
-        pyright = {
+        basedpyright = {
           settings = {
-            pyright = {
-              disableOrganizeImports = true, --Using Ruff
-            },
-            python = {
-              analysis = {
-                ignore = { '*' }, -- Using Ruff
-                typeCheckingMode = 'off', -- Using mypy
-              },
+            basedpyright = {
+              disableOrganizeImports = true,
             },
           },
+        },
+        ruff = {
+          init_options = {
+            settings = {
+              organizeImports = false,
+              fixAll = false,
+            },
+          },
+          on_attach = function(client, _)
+            client.server_capabilities.hoverProvider = false
+            client.server_capabilities.signatureHelpProvider = false
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
         },
         emmet_language_server = {
           filetypes = { 'html', 'css', 'vue' },
@@ -140,13 +148,27 @@ return {
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua',
+        'basedpyright',
+        'cssls',
+        'emmet_language_server',
+        'eslint',
+        'eslint_d',
         'gofumpt',
         'goimports-reviser',
-        'ts_ls',
-        'pyright',
-        'ruff',
+        'gopls',
+        'html',
+        'jsonls',
+        'lua_ls',
         'mypy',
+        'powershell_es',
+        'prettierd',
+        'revive',
+        'ruff',
+        'rust_analyzer',
+        'sqlfmt',
+        'stylua',
+        'terraformls',
+        'ts_ls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
       require('mason-lspconfig').setup {

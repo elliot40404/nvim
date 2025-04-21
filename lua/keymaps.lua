@@ -113,10 +113,6 @@ vim.keymap.set('i', '<M-L>', 'copilot#AcceptWord("\\<CR>")', {
   desc = 'Copilot Accept Word',
 })
 
--- vim.keymap.set('n', '<leader>cs', function()
---   vim.cmd 'Telescope session-lens'
--- end, { desc = 'Switch Session' })
-
 vim.keymap.set('i', '<M-i>', function()
   vim.lsp.buf.signature_help()
 end, { desc = 'Show signature help' })

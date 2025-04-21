@@ -29,9 +29,7 @@ return {
       end
 
       lint.linters_by_ft = {
-        -- markdown = { 'markdownlint' },
-        -- sql = { 'sqlfluff' },
-        python = { 'ruff', 'mypy' },
+        python = { 'mypy' },
         go = { 'revive' },
         javascript = get_js_ts_linters(),
         typescript = get_js_ts_linters(),
