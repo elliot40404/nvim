@@ -230,6 +230,45 @@ local plugins = {
   {
     'rcarriga/nvim-notify',
   },
+  {
+    'monaqa/dial.nvim',
+    lazy = 'BufReadPre',
+    keys = {
+      { '<C-a>', mode = { 'n', 'v' } },
+      { '<C-x>', mode = { 'n', 'v' } },
+      { 'g<C-a>', mode = { 'v' } },
+      { 'g<C-x>', mode = { 'v' } },
+    },
+    config = function()
+      local augend = require 'dial.augend'
+      require('dial.config').augends:register_group {
+        default = {
+          augend.integer.alias.decimal, -- decimal number
+          augend.integer.alias.hex, -- hex number
+          augend.date.alias['%Y/%m/%d'], -- date (2022/02/19, etc.)
+          augend.constant.alias.bool, -- boolean (true <-> false)
+          augend.semver.alias.semver, -- semver (0.1.0, etc.)
+          augend.constant.new {
+            elements = { 'and', 'or' },
+            word = true,
+            cyclic = true,
+          },
+          augend.constant.new {
+            elements = { '&&', '||' },
+            word = false,
+            cyclic = true,
+          },
+        },
+      }
+      local map = vim.keymap.set
+      map('n', '<C-a>', require('dial.map').inc_normal(), { noremap = true })
+      map('n', '<C-x>', require('dial.map').dec_normal(), { noremap = true })
+      map('v', '<C-a>', require('dial.map').inc_visual(), { noremap = true })
+      map('v', '<C-x>', require('dial.map').dec_visual(), { noremap = true })
+      map('v', 'g<C-a>', require('dial.map').inc_gvisual(), { noremap = true })
+      map('v', 'g<C-x>', require('dial.map').dec_gvisual(), { noremap = true })
+    end,
+  },
 }
 
 return plugins
