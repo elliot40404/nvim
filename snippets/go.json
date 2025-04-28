@@ -34,5 +34,12 @@
             "fmt.Printf(\"$1\", $2)$0"
         ],
         "description": "fmt.Printf"
+    },
+    "println": {
+        "prefix": "pl",
+        "body": [
+            "fmt.Println(\"$1\")$0"
+        ],
+        "description": "fmt.Println"
     }
 }
