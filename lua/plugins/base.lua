@@ -165,9 +165,11 @@ local plugins = {
   },
   {
     'stevearc/oil.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     opts = {
+      default_file_explorer = true,
       skip_confirm_for_simple_edits = true,
+      delete_to_trash = true,
       columns = {
         'icon',
         'permissions',
