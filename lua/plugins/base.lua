@@ -66,6 +66,20 @@ local plugins = {
         '<cmd>Trouble qflist toggle<cr>',
         desc = 'Quickfix List (Trouble)',
       },
+      {
+        '<A-p>',
+        function()
+          require('trouble').prev { skip_groups = true, jump = true }
+        end,
+        desc = 'Previous trouble item',
+      },
+      {
+        '<A-n>',
+        function()
+          require('trouble').next { skip_groups = true, jump = true }
+        end,
+        desc = 'Next trouble item',
+      },
     },
   },
   {

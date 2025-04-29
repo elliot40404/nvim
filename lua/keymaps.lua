@@ -47,14 +47,6 @@ vim.keymap.set('n', '<leader>cc', function()
   end
 end, { noremap = true, silent = true, desc = 'Toggle quickfix list window' })
 
-vim.keymap.set('n', '<M-n>', function()
-  require('trouble').next { skip_groups = true, jump = true }
-end, { desc = 'trouble next' })
-vim.keymap.set('n', '<M-p>', function()
-  local trouble = require 'trouble'
-  trouble.prev { skip_groups = true, jump = true }
-end, { desc = 'trouble prev' })
-
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'file copy whole' })
 vim.keymap.set('n', '<leader>ls', function()
