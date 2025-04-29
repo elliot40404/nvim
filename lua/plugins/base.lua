@@ -164,25 +164,6 @@ local plugins = {
     end,
   },
   {
-    'stevearc/oil.nvim',
-    -- event = 'VeryLazy',
-    opts = {
-      default_file_explorer = true,
-      skip_confirm_for_simple_edits = true,
-      delete_to_trash = true,
-      columns = {
-        'icon',
-        'permissions',
-        'size',
-        'mtime',
-      },
-      view_options = {
-        show_hidden = true,
-      },
-    },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
-  {
     'stevearc/overseer.nvim',
     lazy = 'VeryLazy',
     cmd = { 'OveseerRun', 'OverseerToggle' },
