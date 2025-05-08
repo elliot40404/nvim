@@ -108,6 +108,7 @@ vim.diagnostic.config {
 -- NEOVIDE CONFIG
 
 if vim.g.neovide then
-  vim.g.neovide_transparency = 0.93
+  vim.g.neovide_opacity = 0.93
   vim.g.neovide_normal_opacity = 0.93
+  vim.o.guifont = 'JetBrainsMono Nerd Font Mono:h14'
 end

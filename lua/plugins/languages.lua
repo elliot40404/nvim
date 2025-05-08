@@ -17,6 +17,18 @@ return {
       'RainbowDelimQuoted',
       'RainbowMultiDelim',
     },
+    keys = {
+      {
+        '<leader>u',
+        '<cmd>RainbowAlign<cr>',
+        desc = 'Align',
+      },
+      {
+        '<leader>uu',
+        '<cmd>RainbowShrink<cr>',
+        desc = 'Shrink',
+      },
+    },
   },
   {
     'fatih/vim-go',
@@ -30,16 +42,20 @@ return {
     end,
   },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = { 'markdown' },
-    opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
-  },
-  {
     'catgoose/nvim-colorizer.lua',
     ft = { 'html', 'css' },
     opts = {
       mode = 'virtualtext',
     },
+  },
+  -- {
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   ft = { 'markdown' },
+  --   opts = {},
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+  -- },
+  {
+    'OXY2DEV/markview.nvim',
+    lazy = false,
   },
 }
