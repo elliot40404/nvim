@@ -1,4 +1,15 @@
 local plugins = {
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
   'tpope/vim-sleuth',
   {
     'folke/which-key.nvim',
@@ -159,6 +170,17 @@ local plugins = {
       require('lualine').setup {
         options = {
           theme = 'tokyonight',
+        },
+        sections = {
+          lualine_c = {
+            {
+              'filename',
+              path = 1,
+            },
+            'filesize',
+            'selectioncount',
+          },
+          lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
         },
       }
     end,
