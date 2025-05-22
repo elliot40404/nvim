@@ -288,9 +288,6 @@ local plugins = {
       map('v', 'g<C-x>', require('dial.map').dec_gvisual(), { noremap = true })
     end,
   },
-  {
-    'nvim-treesitter/nvim-treesitter-context',
-  },
 }
 
 return plugins
