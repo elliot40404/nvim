@@ -69,10 +69,10 @@ return {
             ['[M'] = '@function.outer',
           },
           goto_next = {
-            [']d'] = '@conditional.outer',
+            [']f'] = '@conditional.outer',
           },
           goto_previous = {
-            ['[d'] = '@conditional.outer',
+            ['[f'] = '@conditional.outer',
           },
         },
       },
