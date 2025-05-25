@@ -70,9 +70,11 @@ return {
           },
           goto_next = {
             [']f'] = '@conditional.outer',
+            [']C'] = '@comment.outer',
           },
           goto_previous = {
             ['[f'] = '@conditional.outer',
+            ['[C'] = '@comment.outer',
           },
         },
       },
