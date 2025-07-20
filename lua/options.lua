@@ -88,6 +88,7 @@ vim.filetype.add {
     ['.templ'] = 'templ',
     ['docker.env'] = 'env',
     ['.env.*'] = 'env',
+    ['.env'] = 'env',
   },
 }
 -- copilot

@@ -173,3 +173,8 @@ vim.keymap.set('n', '<leader>jj', function()
   vim.cmd '%j!'
   vim.cmd "%s/''/','/g"
 end, { desc = 'sql in join' })
+
+vim.keymap.set('n', '<leader>cp', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+end, { desc = 'Copy current file path to clipboard' })

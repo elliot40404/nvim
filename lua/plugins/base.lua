@@ -37,8 +37,18 @@ local plugins = {
       require('mini.ai').setup { n_lines = 500 }
       require('mini.surround').setup()
       require('mini.align').setup()
-      require('mini.comment').setup()
       require('mini.pairs').setup()
+      require('mini.comment').setup {
+        options = {
+          custom_commentstring = function()
+            local filetype = vim.bo.filetype
+            if filetype == 'env' then
+              return '# %s'
+            end
+            return nil
+          end,
+        },
+      }
     end,
   },
   {

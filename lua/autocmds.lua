@@ -41,8 +41,9 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  pattern = '*.env',
+  pattern = { '*.env', '.env', '.env.*', '*.env.*' },
   callback = function()
+    vim.cmd 'set filetype=env'
     vim.cmd 'syntax on'
     vim.cmd 'runtime! syntax/sh.vim'
   end,
