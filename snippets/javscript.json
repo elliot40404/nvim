@@ -5,5 +5,19 @@
             "console.log($1)$0"
         ],
         "description": "console.log"
+    },
+    "zod controller": {
+        "prefix": "zc",
+        "body": [
+            "public $1 = withValidation({",
+            "  bodySchema: z.object({$2}),",
+            "  paramsSchema: z.object({$3}),",
+            "  querySchema: z.object({$4}),",
+            "  handler: async (req,res)=> {",
+            "      $0",
+            "  }",
+            "})"
+        ],
+        "description": "zod controller"
     }
 }

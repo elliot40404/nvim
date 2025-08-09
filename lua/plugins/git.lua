@@ -1,6 +1,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    event = 'BufEnter',
     opts = {
       signs = {
         add = { text = '+' },
@@ -74,6 +75,7 @@ return {
   {
 
     'sindrets/diffview.nvim',
+    lazy = 'VeryLazy',
     opts = {
       view = {
         merge_tool = {

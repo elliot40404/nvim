@@ -18,6 +18,21 @@ else
   Dashboard = {
     width = 60,
     pane_gap = 16,
+    preset = {
+      header = [[
+      ___           ___           ___           ___     
+     /\  \         /\__\         /\  \         /\  \    
+    |::\  \       /:/ _/_       /::\  \       _\:\  \   
+    |:|:\  \     /:/ /\__\     /:/\:\  \     /\ \:\  \  
+  __|:|\:\  \   /:/ /:/ _/_   /:/  \:\  \   _\:\ \:\  \ 
+ /::::|_\:\__\ /:/_/:/ /\__\ /:/__/ \:\__\ /\ \:\ \:\__\
+ \:\~~\  \/__/ \:\/:/ /:/  / \:\  \ /:/  / \:\ \:\/:/  /
+  \:\  \        \::/_/:/  /   \:\  /:/  /   \:\ \::/  / 
+   \:\  \        \:\/:/  /     \:\/:/  /     \:\/:/  /  
+    \:\__\        \::/  /       \::/  /       \::/  /   
+     \/__/         \/__/         \/__/         \/__/    
+      ]],
+    },
     sections = {
       {
         section = 'header',
@@ -63,39 +78,39 @@ else
             return not (vim.o.columns < 135)
           end,
         },
-        {
-          icon = ' ',
-          title = 'Recent Files',
-        },
-        {
-          section = 'recent_files',
-          opts = { limit = 3 },
-          indent = 2,
-          padding = 1,
-        },
-        {
-          icon = ' ',
-          title = 'Projects',
-          enabled = function()
-            return vim.o.columns > 135
-          end,
-        },
-        {
-          section = 'projects',
-          opts = { limit = 3 },
-          indent = 2,
-          padding = 1,
-          enabled = function()
-            return vim.o.columns > 135
-          end,
-        },
-        {
-          section = 'startup',
-          padding = 1,
-          enabled = function()
-            return not (vim.o.columns > 135)
-          end,
-        },
+        -- {
+        --   icon = ' ',
+        --   title = 'Recent Files',
+        -- },
+        -- {
+        --   section = 'recent_files',
+        --   opts = { limit = 3 },
+        --   indent = 2,
+        --   padding = 1,
+        -- },
+        -- {
+        --   icon = ' ',
+        --   title = 'Projects',
+        --   enabled = function()
+        --     return vim.o.columns > 135
+        --   end,
+        -- },
+        -- {
+        --   section = 'projects',
+        --   opts = { limit = 3 },
+        --   indent = 2,
+        --   padding = 1,
+        --   enabled = function()
+        --     return vim.o.columns > 135
+        --   end,
+        -- },
+        -- {
+        --   section = 'startup',
+        --   padding = 1,
+        --   enabled = function()
+        --     return not (vim.o.columns > 135)
+        --   end,
+        -- },
       },
     },
   }
@@ -116,6 +131,11 @@ return {
       input = { enabled = true },
       picker = {
         enabled = true,
+        exclude = {
+          '.git',
+          'node_modules/',
+          'vendor/',
+        },
       },
       -- explorer = { enabled = true },
       statuscolumn = { enabled = true },
@@ -158,18 +178,15 @@ return {
         desc = '[S]earch [K]eymaps',
       },
       {
-        '<leader>sf',
-        function()
-          Snacks.picker.files()
-        end,
-        desc = '[S]earch [F]iles',
-      },
-      {
-        '<leader>sF',
+        '<leader><leader>',
         function()
           Snacks.picker.files {
             hidden = true,
             ignored = true,
+            layout = {
+              -- preview = 'main',
+              preset = 'bottom',
+            },
           }
         end,
         desc = '[S]earch [F]iles',
@@ -217,7 +234,7 @@ return {
         desc = 'Find existing [b]uffers',
       },
       {
-        '<leader><leader>',
+        'ff',
         function()
           if vim.fn.isdirectory '.git' == 1 then
             Snacks.picker.git_files()

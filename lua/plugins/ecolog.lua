@@ -2,6 +2,7 @@ return {
   {
     'philosofonusus/ecolog.nvim',
     branch = 'beta',
+    event = 'BufEnter',
     keys = {
       { '<leader>ge', '<cmd>EcologGoto<cr>', desc = 'Go to env file' },
       { '<leader>ep', '<cmd>EcologPeek<cr>', desc = 'Ecolog peek variable' },
