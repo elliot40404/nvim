@@ -178,3 +178,7 @@ vim.keymap.set('n', '<leader>cp', function()
   local path = vim.fn.expand '%:p'
   vim.fn.setreg('+', path)
 end, { desc = 'Copy current file path to clipboard' })
+
+-- omni func
+-- Try different variations
+vim.keymap.set('i', '<C-n>', '<C-x><C-o>', { desc = 'omnifunc' })

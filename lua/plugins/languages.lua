@@ -30,10 +30,10 @@ return {
       },
     },
   },
-  {
-    'fatih/vim-go',
-    ft = 'go',
-  },
+  -- {
+  --   'fatih/vim-go',
+  --   ft = 'go',
+  -- },
   {
     'windwp/nvim-ts-autotag',
     ft = { 'html' },
@@ -48,12 +48,6 @@ return {
       mode = 'virtualtext',
     },
   },
-  -- {
-  --   'MeanderingProgrammer/render-markdown.nvim',
-  --   ft = { 'markdown' },
-  --   opts = {},
-  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
-  -- },
   {
     'OXY2DEV/markview.nvim',
     ft = { 'markdown' },

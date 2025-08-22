@@ -6,7 +6,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
-      -- { 'folke/neodev.nvim', opts = {} },
       'saghen/blink.cmp',
     },
     config = function()
@@ -68,6 +67,32 @@ return {
           },
         },
       })
+
+      local go_nvim_ok, go_lsp = pcall(require, 'go.lsp')
+      local go_nvim = go_nvim_ok and go_lsp.config() or {}
+      local my_gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        gofumpt = true,
+        staticcheck = true,
+        analyses = {
+          simplify = true,
+          fieldalignment = true,
+          unusedparams = true,
+          unreachable = true,
+        },
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+      }
+      local final_gopls_settings = vim.tbl_deep_extend('force', go_nvim.gopls or {}, my_gopls)
+
       local servers = {
         rust_analyzer = {
           cargo = {
@@ -91,24 +116,7 @@ return {
         },
         gopls = {
           settings = {
-            gopls = {
-              completeUnimported = true,
-              usePlaceholders = true,
-              analyses = {
-                unusedparams = true,
-              },
-              staticcheck = true,
-              gofumpt = true,
-              hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
-                functionTypeParameters = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
-              },
-            },
+            gopls = final_gopls_settings,
           },
         },
         basedpyright = {

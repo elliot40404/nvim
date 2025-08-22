@@ -30,7 +30,7 @@ return {
 
       lint.linters_by_ft = {
         python = { 'mypy' },
-        go = { 'revive' },
+        -- go = { 'revive' },
         javascript = get_js_ts_linters(),
         typescript = get_js_ts_linters(),
       }
