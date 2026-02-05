@@ -182,3 +182,43 @@ end, { desc = 'Copy current file path to clipboard' })
 -- omni func
 -- Try different variations
 vim.keymap.set('i', '<C-n>', '<C-x><C-o>', { desc = 'omnifunc' })
+
+---------------
+
+vim.keymap.set('n', '<leader>rv', function()
+  local clipboard = vim.fn.getreg('+'):gsub('\n$', '')
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+
+  local quotes = {}
+  for pos in line:gmatch '()"' do
+    table.insert(quotes, { pos = pos, char = '"' })
+  end
+  for pos in line:gmatch "()'" do
+    table.insert(quotes, { pos = pos, char = "'" })
+  end
+  table.sort(quotes, function(a, b)
+    return a.pos < b.pos
+  end)
+
+  local best, min_dist = nil, math.huge
+  for i = 1, #quotes - 1 do
+    if quotes[i].char == quotes[i + 1].char then
+      local dist = math.abs(col - (quotes[i].pos + quotes[i + 1].pos) / 2)
+      if dist < min_dist then
+        min_dist, best = dist, { quotes[i], quotes[i + 1] }
+      end
+    end
+  end
+
+  if not best then
+    vim.notify('No surrounding quotes found on this line', vim.log.levels.WARN)
+    return
+  end
+
+  vim.api.nvim_set_current_line(line:sub(1, best[1].pos) .. clipboard .. line:sub(best[2].pos))
+end, {
+  desc = 'Replace text inside quotes with clipboard',
+  silent = true,
+  noremap = true,
+})

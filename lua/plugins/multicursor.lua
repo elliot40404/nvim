@@ -1,8 +1,4 @@
 return {
-  -- {
-  --   'mg979/vim-visual-multi',
-  --   event = 'BufEnter',
-  -- },
   {
     'jake-stewart/multicursor.nvim',
     branch = '1.0',
@@ -22,9 +18,6 @@ return {
       set({ 'n', 'x' }, '<C-n>', function()
         mc.matchAddCursor(1)
       end)
-      -- set({ 'n', 'x' }, '<leader>J', function()
-      --   mc.matchSkipCursor(1)
-      -- end)
 
       set('n', '<c-leftmouse>', mc.handleMouse)
       set('n', '<c-leftdrag>', mc.handleMouseDrag)

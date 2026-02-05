@@ -30,10 +30,6 @@ return {
       },
     },
   },
-  -- {
-  --   'fatih/vim-go',
-  --   ft = 'go',
-  -- },
   {
     'windwp/nvim-ts-autotag',
     ft = { 'html' },

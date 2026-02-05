@@ -208,7 +208,11 @@ return {
       {
         '<M-/>',
         function()
-          Snacks.picker.grep()
+          Snacks.picker.grep {
+            layout = {
+              preset = 'bottom',
+            },
+          }
         end,
         desc = '[S]earch by [G]rep',
       },
@@ -229,7 +233,11 @@ return {
       {
         '<leader>b',
         function()
-          Snacks.picker.buffers()
+          Snacks.picker.buffers {
+            layout = {
+              preset = 'bottom',
+            },
+          }
         end,
         desc = 'Find existing [b]uffers',
       },
@@ -237,9 +245,17 @@ return {
         'ff',
         function()
           if vim.fn.isdirectory '.git' == 1 then
-            Snacks.picker.git_files()
+            Snacks.picker.git_files {
+              layout = {
+                preset = 'bottom',
+              },
+            }
           else
-            Snacks.picker.files()
+            Snacks.picker.files {
+              layout = {
+                preset = 'bottom',
+              },
+            }
           end
         end,
         desc = '[S]earch [F]iles',
@@ -261,7 +277,11 @@ return {
       {
         '<leader>sb',
         function()
-          Snacks.picker.git_branches()
+          Snacks.picker.git_branches {
+            layout = {
+              preset = 'bottom',
+            },
+          }
         end,
         desc = '[s]witch git [b]ranch',
       },
@@ -290,14 +310,14 @@ return {
         desc = 'Search [L]ine under cursor',
       },
       {
-        ']]',
+        '<leader>]]',
         function()
           Snacks.words.jump(vim.v.count1)
         end,
         desc = 'Next Reference',
       },
       {
-        '[[',
+        '<leader>[[',
         function()
           Snacks.words.jump(-vim.v.count1)
         end,
@@ -329,7 +349,10 @@ return {
           if vim.fn.isdirectory '.git' == 1 then
             Snacks.picker.files {
               title = 'Modified Files (git)',
-              layout = 'select',
+              -- layout = 'select',
+              layout = {
+                preset = 'bottom',
+              },
               finder = function()
                 local output = vim.fn.systemlist 'git status --porcelain=v1 -uall'
                 local items = {}
