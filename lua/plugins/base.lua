@@ -140,7 +140,7 @@ local plugins = {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'tokyonight',
+          theme = 'ayu',
         },
         sections = {
           lualine_c = {

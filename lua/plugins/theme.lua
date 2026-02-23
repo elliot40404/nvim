@@ -1,16 +1,21 @@
 return {
   {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = 'transparent',
-        floats = 'transparent',
-      },
-    },
-    init = function()
-      vim.cmd.colorscheme 'tokyonight-night'
+    'Shatur/neovim-ayu',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('ayu').setup {
+        mirage = false,
+        overrides = {
+          Normal = { bg = 'None' },
+          NormalFloat = { bg = 'None' },
+          SignColumn = { bg = 'None' },
+          FoldColumn = { bg = 'None' },
+          CursorLineNr = { bg = 'None' },
+          LineNr = { bg = 'None' },
+        },
+      }
+      vim.cmd.colorscheme 'ayu-dark'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
