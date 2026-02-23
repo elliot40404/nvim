@@ -181,7 +181,9 @@ end, { desc = 'Copy current file path to clipboard' })
 
 -- omni func
 -- Try different variations
-vim.keymap.set('i', '<C-n>', '<C-x><C-o>', { desc = 'omnifunc' })
+if jit.os ~= 'Windows' then
+  vim.keymap.set('i', '<C-n>', '<C-x><C-o>', { desc = 'omnifunc' })
+end
 
 ---------------
 

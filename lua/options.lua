@@ -70,7 +70,6 @@ vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.opt.scrolloff = 10
 vim.opt.colorcolumn = '120'
 -- Terminal Options
 if jit.os == 'Windows' then
@@ -112,7 +111,6 @@ vim.g.go_imports_autosave = 0
 -- NEOVIDE CONFIG
 
 if vim.g.neovide then
-  vim.g.neovide_opacity = 0.93
-  vim.g.neovide_normal_opacity = 0.93
+  vim.g.neovide_transparency = 0.93
   vim.o.guifont = 'JetBrainsMono Nerd Font Mono:h14'
 end

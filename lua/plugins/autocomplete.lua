@@ -42,6 +42,24 @@ return {
       fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true, window = { border = 'rounded' } },
     },
+    config = function(_, opts)
+      if jit.os == 'Windows' then
+        opts.keymap = vim.tbl_deep_extend('force', opts.keymap or {}, {
+          ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+          ['<C-@>'] = { 'show', 'show_documentation', 'hide_documentation' },
+          ['<C-n>'] = { 'show', 'select_next', 'fallback' },
+        })
+      end
+
+      require('blink.cmp').setup(opts)
+
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenu', { link = 'NormalFloat' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpMenuBorder', { link = 'FloatBorder' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpDoc', { link = 'NormalFloat' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpDocBorder', { link = 'FloatBorder' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelp', { link = 'NormalFloat' })
+      vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelpBorder', { link = 'FloatBorder' })
+    end,
     opts_extend = { 'sources.default' },
   },
 }

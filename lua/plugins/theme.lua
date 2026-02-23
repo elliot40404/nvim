@@ -11,8 +11,7 @@ return {
           NormalFloat = { bg = 'None' },
           SignColumn = { bg = 'None' },
           FoldColumn = { bg = 'None' },
-          CursorLineNr = { bg = 'None' },
-          LineNr = { bg = 'None' },
+          LineNr = { fg = '#6C768A', bg = 'None' },
         },
       }
       vim.cmd.colorscheme 'ayu-dark'
